@@ -25,3 +25,28 @@ Body
      Route=/connection = feed
      Route=/profile = feed
 login page     
+
+
+
+deployment
+
+login in aws
+launch instance
+chmod 400<secret>.pem
+
+ssh -i <paste from aws>
+
+install node version 
+
+git clone
+
+frontend
+   -npm install
+   -npm run build
+   -sudo apt update
+   -sudo apt install nginx
+   -sudo systemctl start nginx
+   -sudo systemctl enable nginx
+   -copy code from dist folder to enginex http server to /var/www/html command sudo scp -r dist/* /var/www/html/
+   enable port 80 of your instance
+

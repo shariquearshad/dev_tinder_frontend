@@ -34,10 +34,11 @@ function Connections() {
  <div className=' text-bold text-2xl'>Connections</div>
 
  {connections.map(connection=>{
-  const {firstName,lastName,photoUrl,age}=connection
+  const {firstName,lastName,photoUrl,age,about}=connection
   return(<div key={connection._id}>
     <img alt="photo" className=' w-20 h-20' src={photoUrl}/>
     <h2>{firstName+"    "+lastName}</h2>
+    <p>{about}</p>
     </div>)
  })}
     </div>
