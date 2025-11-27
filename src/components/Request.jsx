@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { baseUrl } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +21,7 @@ const Requests = () => {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get(BASE_URL + "/user/requests/received", {
+      const res = await axios.get(baseUrl + "/user/requests/received", {
         withCredentials: true,
       });
 

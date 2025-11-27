@@ -20,10 +20,11 @@ const Chat = () => {
     console.log(chat.data.messages);
 
     const chatMessages = chat?.data?.messages.map((msg) => {
-      const { senderId, text } = msg;
+      const { senderId, text,createdAt } = msg;
       return {
         firstName: senderId?.firstName,
         lastName: senderId?.lastName,
+        createdAt,
         text,
       };
     });
@@ -45,9 +46,9 @@ const Chat = () => {
       targetUserId,
     });
 
-    socket.on("messageReceived", ({ firstName, lastName, text }) => {
+    socket.on("messageReceived", ({ firstName, lastName, text,createdAt }) => {
       console.log(firstName + " :  " + text);
-      setMessages((messages) => [...messages, { firstName, lastName, text }]);
+      setMessages((messages) => [...messages, { firstName, lastName, text,createdAt }]);
     });
 
     return () => {
@@ -66,6 +67,11 @@ const Chat = () => {
     });
     setNewMessage("");
   };
+  function getDate(timestamp){
+    const dbDate= new Date(timestamp);
+    // console.log(`${Date.now()} : ${Date.now(timestamp)} timm elspsed=${Date.now()-currDate}`);
+    return (Date.now()-dbDate)>60000?`${((Date.now()-dbDate)/60000).toFixed(0)} min`:`${((Date.now()-dbDate)/1000).toFixed(0)} sec`;
+  }
 
   return (
     <div className="w-3/4 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col">
@@ -82,7 +88,7 @@ const Chat = () => {
             >
               <div className="chat-header">
                 {`${msg.firstName}  ${msg.lastName?msg.lastName:''}`}
-                <time className="text-xs opacity-50"> 2 hours ago</time>
+                <time className="text-xs opacity-50"> {getDate(msg.createdAt)}</time>
               </div>
               <div className="chat-bubble">{msg.text}</div>
               <div className="chat-footer opacity-50">Seen</div>
