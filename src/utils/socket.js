@@ -4,5 +4,5 @@ import { baseUrl } from "./constants";
 export const createSocketConnection=()=>{
     if(window.location==="localhost")
     return io(baseUrl);
-    return io("/",{path:"api/socket.io"})
+    return io("/",{path:"/api/socket.io"})
 }
